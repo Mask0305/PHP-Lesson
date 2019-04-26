@@ -1,0 +1,65 @@
+@CHARSET "UTD-8";
+#register{
+	width:auto;
+	height:600px;
+	border:2px solid #ccc;
+	font-size:15px;
+}
+
+#register h2{
+	text-indent:0;
+	text-align:center;
+}
+
+#register dl{
+	width:225px;
+	margin:0 auto;
+	margin-left:370px;
+	font-family:sans-serif;
+}
+
+#register dl dt{
+	text-align:center;	
+	padding:10px 0;
+	font-weight:bold;
+}
+#register dt{
+	text-align:center;
+	padding:10px 0;
+	font-weight:bold;
+}
+
+#register dd{
+	padding:3px;
+}
+
+#register dl dd input.text{
+	width:220px;
+	height:19px;
+	border:1px dashed #333;
+	background:#fff;
+	margin:auto;
+}
+
+#register dl dd input.yzm{
+	width:100px;
+	height:19px;
+	border:1px dashed #333;
+	background:#fff;
+	margin:auto;
+}
+
+#register button.submit{
+	width:150px;
+	height:50px;
+	background:#AAFFEE;
+	margin-left:40px;
+	margin-top:10px;
+	cursor:pointer;
+}
+
+#register dl dd img#code {
+	position:relative;
+	top:8px;
+	cursor:pointer;
+}
