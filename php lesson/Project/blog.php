@@ -15,6 +15,7 @@ if(!$page){
 $pagesize=10;
 $pagenum=($page-1)*$pagesize;
 $uni = sha1(uniqid(rand(),true)); //唯一標識符
+
 /*讀取圖片*/
 $sql="SELECT `Image` From `img` LIMIT $pagenum,$pagesize";
 $result=filterTable($sql);
@@ -35,6 +36,7 @@ while($row=mysqli_fetch_array($result)){
 	$i++;
 };
 
+/*讀取帳號對應ID*/
 $sql="SELECT `Id` From `account`";
 $result=filterTable($sql);
 $uid=array();

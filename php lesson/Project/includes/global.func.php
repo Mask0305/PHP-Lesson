@@ -6,6 +6,7 @@
 // 	exit("Access Defined!");
 // };
 
+
 function alert_back($_info) {
 	echo "<script type='text/javascript'>alert('$_info');history.back();</script>";
 	exit();
@@ -23,6 +24,20 @@ function _check_code($_first_code,$_end_code){//輸入的驗證碼，產生的�
 	}
 
 }
+
+function _mysqli_string($_string) {
+	//get_magic_quotes_gpc()如果开启状态，那么就不需要转义
+		if (is_array($_string)) {
+			foreach ($_string as $_key => $_value) {
+				$_string[$_key] = _mysql_string($_value);   //这里采用了递归，如果不理解，那么还是用htmlspecialchars
+			}
+		} else {
+			$con = mysqli_connect('localhost','root','','motorcycle');
+			$_string = mysqli_real_escape_string($con,$_string);
+		}
+	return $_string;
+}
+
 
 function new_fetch_array($_sql) {
 	return mysqli_fetch_array(filterTable($_sql));	

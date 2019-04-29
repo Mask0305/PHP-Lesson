@@ -24,7 +24,7 @@ if(@$_SESSION['user']!=""){
 	<link rel="shortcut icon" href="Ahri Popstar.ico">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body>
+<body style="background:;">
 
 <?php require ROOT_PATH.'includes/header.inc.php';?>
 
