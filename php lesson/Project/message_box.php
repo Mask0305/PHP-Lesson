@@ -40,7 +40,7 @@ return $result[0];
 }
 
 /*批量刪除訊息*/
-if($_GET['action']=='delete' && isset($_POST['ids'])){
+if(@$_GET['action']=='delete' && isset($_POST['ids'])){
 	$_clean=array();
 	$_clean['ids'] = _mysqli_string(implode(',',$_POST['ids']));
 
@@ -81,14 +81,20 @@ if($_GET['action']=='delete' && isset($_POST['ids'])){
 		<h2>訊息盒子</h2>
 		<form method="POST" action="?action=delete">
 			<table cellspacing="1">
-				<tr><th>發訊者</th><th>訊息内容</th><th>時間</th><th>管理</th></tr>
+				<tr><th>發訊者</th><th>訊息内容</th><th>狀態</th><th>時間</th><th>管理</th></tr>
 				<?php 
 				while($roow = mysqli_fetch_array($result)){?>
 				<tr>
 					<td><?php echo change($roow['sender']);?></td>
-					<td><?php echo '<a href="message_detail.php?num='.$roow['num'].'">'.mb_substr($roow['detail'],0,15).'</a>';
-							if(strlen($roow['detail'])>45){echo '...';}?></td>
-					<td><?php echo $roow['time']?></td><td><input type="checkbox" name="ids[]" value="<?php echo $roow['num'];?>" /></td>
+					<td><?php 
+							if($roow['state']==0){echo '<strong>';}
+							echo '<a href="message_detail.php?num='.$roow['num'].'">'.mb_substr($roow['detail'],0,15).'</a>';
+							if(strlen($roow['detail'])>45){echo '...';}
+							if($roow['state']==0){echo '</strong>';}?>
+					</td>
+					<td><?php if($roow['state']==1){echo '<img src="images/noread.gif">';}else{echo '<img src="images/read.gif">';}?></td>
+					<td><?php echo $roow['time']?></td>
+					<td><input type="checkbox" name="ids[]" value="<?php echo $roow['num'];?>" /></td>
 				</tr>
 				<?php }
 				?>

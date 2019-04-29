@@ -13,7 +13,15 @@ require dirname(__FILE__).'\includes\common.inc.php';
 $sql="SELECT * FROM `message` WHERE `num` = '".$_GET['num']."'";
 $row = new_fetch_array($sql);
 
+function change($sender){
+$sql="SELECT `Username` FROM `account` WHERE `Email`='".$sender."'";
+$result=new_fetch_array($sql);
+return $result[0];
+}
 
+/*更改狀態 未讀->已讀*/
+$sql="UPDATE `message` SET `message`.`state` = '1' WHERE `num`='".$_GET['num']."'";
+$result = filterTable($sql);
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,8 +52,8 @@ $row = new_fetch_array($sql);
 			<h2>訊息內容</h2>
 			<dl>
 				<input type="hidden" name="mesID" value="<?php echo $_GET['num']; ?>" />
-				<dd>發 訊 人：<?php echo $row['sender']; ?></dd>
-				<dd>内　　容：<strong><?php echo '<br>'.$row['detail']; ?></strong></dd>
+				<dd>發 訊 人：<?php echo change($row['sender']).' ( '.$row['sender'].' )'; ?></dd>
+				<dd>内　　容：<?php echo '<br>'.$row['detail']; ?></dd>
 				<dd>發訊時間：<?php echo $row['time']; ?></dd>
 				<input class="btn" style="width:70px;height:30px; margin-left:5px; background:#888888; color:white;" type="button"  value="返回盒子" onclick="javascript:history.back();" />
 				<input class="btn" style="width:70px;height:30px; background:#888888; color:white;" type="submit" name="delmes"  value="刪除訊息" />

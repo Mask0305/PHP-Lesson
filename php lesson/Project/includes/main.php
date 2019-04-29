@@ -144,6 +144,7 @@ function send(){
 	$rec = $_POST['oper']; 		//接收者
 	$detail=$_POST['detail'];	//訊息內容
 	$recid = $_POST['RecID'];   //接收者id
+	date_default_timezone_set('Asia/Taipei');
 	$time=date('Y-m-d H:i:s');	//傳送時間
 
 	$sql1="SELECT `Id` FROM `account` WHERE `Email`='".$_SESSION['user']."'";	//發送者ID

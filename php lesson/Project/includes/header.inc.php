@@ -1,9 +1,25 @@
 <?php
-error_reporting(0);
+
 
 if(!defined("IN_TG")){
 	exit("Access Defined!");
 };
+
+
+/*訊息提醒*/
+
+
+if(isset($_COOKIE['username'])){
+	$sql9="SELECT `Username` FROM `account` WHERE `Email`= '".$_SESSION['user']."'";
+	$u_name=new_fetch_array($sql9);
+
+	$sql="SELECT * FROM `message` WHERE `state` = '0' && `recipient` = '".$u_name[0]."'";
+	if(@new_fetch_array($sql)){
+		$state=0;		//表示有未讀
+		}else{
+		$state=1;
+		}
+}
 ?>
 
 
@@ -11,11 +27,14 @@ if(!defined("IN_TG")){
 	<h1><a href="index.php">GSX-R150 論壇</a></h1>
 		<ul>
 			<li><a href="index.php">首頁</a></li>
-			
-			
+
 			<?php
 			if(isset($_COOKIE['username'])){
-				echo "<li><a href=\"member.php\">個人中心</a></li>";
+				if($state!=0){
+					echo "<li><a href=\"member.php\">個人中心</a></li>";
+				}else{
+					echo "<li><a href=\"member.php\">個人中心</a><a href='message_box.php'><img src=\"images/meg.gif\"></a></li>";
+				}
 			}else{
 				echo"<li><a href=\"register.php\">註冊</a></li>";
 				echo"\n";

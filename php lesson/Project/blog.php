@@ -37,7 +37,7 @@ while($row=mysqli_fetch_array($result)){
 };
 
 /*讀取帳號對應ID*/
-$sql="SELECT `Id` From `account`";
+$sql="SELECT `Id` From `account` LIMIT $pagenum,$pagesize";
 $result=filterTable($sql);
 $uid=array();
 $i=0;
